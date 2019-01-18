@@ -1,0 +1,979 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Modelling of underlimiting and overlimiting current transport in electrodialysis: challenges and opportunities.</title>
+
+		<link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../../themes/biomath/theme_BIOMATH.css">
+		<link rel="stylesheet" href="style.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+        
+        <!-- MathJax -->   
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+              imageFont:null
+            });
+        </script>
+        <script type="text/javascript" async src="../../MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+        
+        <!-- User settings -->
+        <style>
+            /* Confidentiality */
+            p.confidentialFooter {
+                display: none;
+            }
+        </style>
+        
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section class="cover"> 
+                    <div class="paddingWrapper">
+                        <div class="header">  
+                            <img src="../../themes/biomath/figs/logo_UGent_EN_RGB_color.svg" alt="logoUGent" id="logoUGent">
+                            <img src="../../themes/biomath/figs/icon_UGent_BW_EN_RGB_color.svg" alt="logoFaculty" id="logoFaculty">    
+                            <div class=horizontalFiller></div>
+                        </div>
+                        <h2 style="font-size: 30px;"> Modelling of underlimiting and overlimiting current transport in electrodialysis: challenges and opportunities</h2>
+                        <p class="coverName"> <span style="border-bottom: 3px;border-bottom-style: dotted;border-bottom-color: lightslategray">Bram De Jaegher</span>, Ingmar Nopens, Arne Verliefde, Wim De Schepper</p>
+                        <p class="additionalInformation" style="margin-top: 30px;"> WONAPDE 2019: Numerical methods for water resources  </p>
+                        <div class="coverFooter">
+                            <div class="rowx" style="height: 50px;">
+                                <div class="col" style="width: 55%;">
+                                    <img class="logoBiomath" src="../../themes/biomath/figs/Biomath_logo.svg" alt="logoBiomath">
+                                </div>
+                                <div class="col" style="width: 15%;margin-left: 50px;margin-right: 20px;">
+                                    <img id="logoPaintCover" src="figs/paint.png">
+                                </div>
+                                <div class="col" style="width: 20%;">
+                                    <img id="logoVitoCover" src="figs/vito.svg">
+                                </div>
+                            </div>
+                            <div class="videoWrapper">
+                                <video id="electroConv" nocontrols loop autoplay>
+                                  <source src="vids/electroConvBlue.webm" type="video/webm">
+                                Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="normalHeader"> 
+                    <div class="paddingWrapper">
+                        <div class="figures" style="margin-top:20px">
+                            <img src="figs/intro.svg" style="height: 700px;">
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        <p>What if I told you there is a technology that is able to stabilise wine and keep them for longer. 
+                            Well the same technology can also be used to treat by-products of the cheese production. It is also the same technology that is used to desalinate seawater for the production of drinking water.
+                            
+                        </p>
+                        <ul>
+                            <li>Maybe add babyfood and remove the fermenter?</li>
+                            <li></li>
+                        </ul> 
+                   </aside>
+                </section>    
+                
+                <section class="normalHeader"> 
+                    <div class="paddingWrapper">
+                        <div class="figures" style="margin-top:20px">
+                            <img src="figs/intro2.svg" style="height: 700px;">
+                        </div>
+                    </div>
+                </section>    
+                
+                <section class="normalHeader"> 
+                    <div class="paddingWrapper">
+                        <div class="figures" style="margin-top:20px">
+                            <img src="figs/intro3.svg" style="height: 700px;">
+                        </div>
+                    </div>
+                </section>    
+                
+                <section class="normalHeader"> 
+                    <div class="paddingWrapper">
+                        <div class="figures" style="margin-top:20px">
+                            <img src="figs/intro4.svg" style="height: 700px;">
+                        </div>
+                    </div>
+                </section>    
+                
+                <section class="normalHeader"> 
+                    <div class="paddingWrapper">
+                        <div class="figures" style="margin-top:20px">
+                            <img src="figs/intro5.svg" style="height: 700px;">
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="cover"> 
+                        <div class="paddingWrapper">
+                            <div class="header">  
+                                <img src="../../themes/biomath/figs/logo_UGent_EN_RGB_color.svg" alt="logoUGent" id="logoUGent">
+                                <img src="../../themes/biomath/figs/icon_UGent_BW_EN_RGB_color.svg" alt="logoFaculty" id="logoFaculty">    
+                                <div class=horizontalFiller></div>
+                            </div>
+                            <h2 style="font-size: 30px;"> Modelling of underlimiting and overlimiting current transport in electrodialysis: challenges and opportunities</h2>
+                            <p class="coverName"> <span style="border-bottom: 3px;border-bottom-style: dotted;border-bottom-color: lightslategray">Bram De Jaegher</span>, Ingmar Nopens, Arne Verliefde, Wim De Schepper</p>
+                            <p class="additionalInformation" style="margin-top: 30px;"> WONAPDE 2019: Numerical methods for water resources  </p>
+                            <div class="coverFooter">
+                                <div class="rowx" style="height: 50px;">
+                                    <div class="col" style="width: 55%;">
+                                        <img class="logoBiomath" src="../../themes/biomath/figs/Biomath_logo.svg" alt="logoBiomath">
+                                    </div>
+                                    <div class="col" style="width: 15%;margin-left: 50px;margin-right: 20px;">
+                                        <img id="logoPaintCover" src="figs/paint.png">
+                                    </div>
+                                    <div class="col" style="width: 20%;">
+                                        <img id="logoVitoCover" src="figs/vito.svg">
+                                    </div>
+                                </div>
+                                <div class="videoWrapper">
+                                    <video id="electroConv" nocontrols loop autoplay>
+                                      <source src="vids/electroConvBlue.webm" type="video/webm">
+                                    Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                </section>
+
+                <section class="normalHeader" id="EDIntro"> 
+                    <div class="header">  
+                        <h2> Electrodialysis </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                       <div class="figures">
+                           <img src="figs/ED.svg" style="margin-top: 50px;">
+                       </div>
+                    </div>
+                        <aside class="notes">
+                            <p>Talk about point (1) on paper</p>
+                            <p>Talk about me</p>
+	                   </aside>
+                </section>     
+
+                <section class="normalHeader" id="foul1"> 
+                    <div class="header">  
+                        <h2> Fouling in electrodialysis </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <div class="container">
+                            <div class="rowx" style="height:200px;border: none">
+                                <div class="column" style="height: 100%;float: left;width: 50%">
+                                    <ul style="position:absolute; margin-top:80px;left:80px;">
+                                        <li><b>Seawater</b></li>
+                                    </ul>
+                                </div>
+                                <div class="column" style="height: 100%;float: right;width: 40%">
+                                    <div class="figures" style="margin-top:20px">
+                                        <img src="figs/proper.png" style="height: 160px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rowx fragment" style="height:200px;border: none">
+                                <div class="column" style="height: 100%;float: left;width: 50%">
+                                    <ul style="position:absolute; margin-top:80px;left:80px;">
+                                        <li><b>Whey</b></li>
+                                    </ul>
+                                </div>
+                                <div class="column" style="height: 100%;float: right;width: 40%">
+                                    <div class="figures" style="margin-top:20px">
+                                        <img src="figs/proper.png" style="height: 160px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rowx fragment" style="height:200px;border: none">
+                                <div class="column" style="height: 100%;float: left;width: 50%">
+                                    <ul style="position:absolute; margin-top:80px;left:80px;">
+                                        <li><b>Bio-based streams</b></li>
+                                    </ul>
+                                </div>
+                                <div class="column" style="height: 100%;float: right;width: 40%">
+                                    <div class="figures" style="margin-top:20px">
+                                        <img src="figs/fouleed.png" style="height: 160px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <aside class="notes">
+                            Op deze slide in het midden nog zo'n 3D voorstelling van ED zoals slide thesis PaInT 
+	                   </aside>
+                </section>     
+                
+
+                <section class="normalHeader" id="foul2"> 
+                    <div class="header">  
+                        <h2> Fouling in electrodialysis </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <div class="container">
+                            <div class="rowx" style="height:200px;border: none">
+                                <div class="column" style="height: 100%;float: left;width: 50%">
+                                    <ul style="position:absolute; margin-top:80px;left:80px;">
+                                        <li><b>Seawater</b></li>
+                                    </ul>
+                                </div>
+                                <div class="column" style="height: 100%;float: right;width: 40%">
+                                    <div class="figures" style="margin-top:20px">
+                                        <img src="figs/proper.png" style="height: 160px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rowx" style="height:200px;border: none">
+                                <div class="column" style="height: 100%;float: left;width: 50%">
+                                    <ul style="position:absolute; margin-top:80px;left:80px;">
+                                        <li><b>Whey</b></li>
+                                    </ul>
+                                </div>
+                                <div class="column" style="height: 100%;float: right;width: 40%">
+                                    <div class="figures" style="margin-top:20px">
+                                        <img src="figs/proper.png" style="height: 160px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rowx" style="height:200px;border: none;">
+                                <div class="column" style="height: 100%;float: left;width: 50%;">
+                                    <ul style="position:absolute; margin-top:80px;left:80px;">
+                                        <li style="border-bottom: 2px dashed grey;"><b>Bio-based streams</b></li>
+                                    </ul>
+                                </div>
+                                <div class="column" style="height: 100%;float: right;width: 40%">
+                                    <div class="figures" style="margin-top:20px">
+                                        <img src="figs/fouleed.png" style="height: 160px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <aside class="notes">
+                                <p><b>Quite some potential in bio-based process streams</b></p>
+                                <p>Puntje (4) notes</p>
+                                <p>For the latter stream there is a great interest from industry, these streams have a quite an interesting "value"</p>
+                                <p>Some examples: </p>
+                                <ul>
+                                    <li>Detoxification of biomass for ethanol production</li>
+                                    <li>Extraction of organic acids from fermentation broth</li>
+                                </ul> 
+	                   </aside>
+                </section>     
+
+                <section class="normalHeader" id="foulingWhat"> 
+                        <div class="header">  
+                            <h2> Fouling in electrodialysis </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="figures" style="margin-top:50px">
+                                    <img src="figs/EDFouling.svg" style="height: 420px;">
+                            </div>
+                        </div>
+                        <aside class="notes">
+                            <p>Efkes uitleggen: what is fouling, met afbeeldingen</p>
+                            <p>Important near-wall behaviour</p>
+                            <p>Slow, transient phenomenon</p>
+                        </aside>
+                </section>
+
+                <section class="normalHeader" id="model1"> 
+                        <div class="header">  
+                            <h2> Solving the fouling hurdle </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <ul>
+                                <li>Trial &amp; error experimentation</li>
+                                <li class="fragment">Modelling
+                                    <ul>
+                                        <li class="fragment">Model-based design</li>
+                                        <div class="figures fragment" style="margin-top:20px">
+                                            <img src="figs/Picture1.png" style="height: 320px;">
+                                        </div>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <aside class="notes">
+                        </aside>
+                </section>
+             
+                <section class="normalHeader" id="overview1"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <div class="figures">
+                            <img src="figs/electrodialysisClosed.svg" style="width: 76%; margin-right: 5%;" class="center">
+                        </div>
+                    </div>
+                        <aside class="notes">
+	                   </aside>
+                </section> 
+             
+                <section class="normalHeader" id="overview3"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <div class="figures">
+                            <img src="figs/electrodialysisClosedarrowFin.svg" style="width: 76%; margin-right: 5%;" class="center">
+                        </div>
+                    </div>
+                        <aside class="notes">
+                            <p>Let us check how fouling happens in electrodialysis </p>
+                            <p>For the remainder of the presentation I will focus on what happens in one channel</p>
+	                   </aside>
+                </section> 
+
+                <section class="normalHeader" id="modelDesc1"> 
+                        <div class="header">  
+                            <h2> Electrodialysis model </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="rowx">
+                                <div class="col" style="width: 25%;margin-bottom: 420px;margin-right:80px;">
+                                    <div class="dottedBox">
+                                        <ul>
+                                            <li style="color: lightgrey;">Hydrodynamics</li>
+                                            <li style="color: lightgrey;">Electric field</li>
+                                            <li style="color: lightgrey;">Ion transport</li>
+                                        </ul>
+                                    </div> 
+                                    <div class="figures">
+                                            <img src="figs/EDProces-8.svg" style="width: 37%;position: absolute;top: 318px;left: 32px;" class="center">
+                                    </div>
+                                </div>
+                                <div class="col sideEq" style="width: 53%;padding-top: 80px;">
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${\displaystyle {\frac {\partial \mathbf {u} }{\partial t}}+(\mathbf {u} \cdot \nabla )\, \mathbf {u} -\nu \,\nabla ^{2}\mathbf {u} \,  = f }$$</p>                                
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${ \displaystyle {\nabla \cdot \mathbf{u} = 0 }}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${ \displaystyle {\nabla^{2} \varphi =  \frac{-F(c_{Na}-c_{Cl})}{\epsilon \epsilon_0}}}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Na} = D \, \nabla c_{Na}-\mathbf{u}\, c_{Na}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Na}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Cl} = D \, \nabla c_{Cl}-\mathbf{u}\, c_{Cl}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Cl}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${\displaystyle {\frac {\partial c_{Na}}{\partial t} = \nabla \cdot \mathbf{J}_{Na} }}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${\displaystyle {\frac {\partial c_{Cl}}{\partial t} = \nabla \cdot \mathbf{J}_{Cl} }}$$</p>
+                                    <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <aside class="notes"></aside>
+                </section>
+
+                <section class="normalHeader" id="modelDesc2"> 
+                        <div class="header">  
+                            <h2> Electrodialysis model </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="rowx">
+                                <div class="col" style="width: 25%;margin-bottom: 420px;margin-right:80px;">
+                                    <div class="dottedBox">
+                                        <ul>
+                                            <li>Hydrodynamics</li>
+                                            <li style="color: lightgrey;">Electric field</li>
+                                            <li style="color: lightgrey;">Ion transport</li>
+                                        </ul>
+                                    </div> 
+                                    <div class="figures">
+                                            <img src="figs/EDProces-7.svg" style="width: 37%;position: absolute;top: 318px;left: 32px;" class="center">
+                                    </div>
+                                </div>
+                                <div class="col sideEq" style="width: 53%;padding-top: 80px;">
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial \mathbf {u} }{\partial t}}+(\mathbf {u} \cdot \nabla )\, \mathbf {u} -\nu \,\nabla ^{2}\mathbf {u} \,  = f }$$</p>                                
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla \cdot \mathbf{u} = 0 }}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${ \displaystyle {\nabla^{2} \varphi =  \frac{-F(c_{Na}-c_{Cl})}{\epsilon \epsilon_0}}}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Na} = D \, \nabla c_{Na}-\mathbf{u}\, c_{Na}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Na}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Cl} = D \, \nabla c_{Cl}-\mathbf{u}\, c_{Cl}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Cl}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${\displaystyle {\frac {\partial c_{Na}}{\partial t} = \nabla \cdot \mathbf{J}_{Na} }}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${\displaystyle {\frac {\partial c_{Cl}}{\partial t} = \nabla \cdot \mathbf{J}_{Cl} }}$$</p>
+                                    <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <aside class="notes"></aside>
+                </section>
+
+                <section class="normalHeader" id="modelDesc3"> 
+                        <div class="header">  
+                            <h2> Electrodialysis model </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="rowx">
+                                <div class="col" style="width: 25%;margin-bottom: 420px;margin-right:80px;">
+                                    <div class="dottedBox">
+                                        <ul>
+                                            <li>Hydrodynamics</li>
+                                            <li>Electric field</li>
+                                            <li style="color: lightgrey;">Ion transport</li>
+                                        </ul>
+                                    </div> 
+                                    <div class="figures">
+                                            <img src="figs/EDProces-6.svg" style="width: 37%;position: absolute;top: 318px;left: 32px;" class="center">
+                                    </div>
+                                </div>
+                                <div class="col sideEq" style="width: 53%;padding-top: 80px;">
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial \mathbf {u} }{\partial t}}+(\mathbf {u} \cdot \nabla )\, \mathbf {u} -\nu \,\nabla ^{2}\mathbf {u} \,  = f }$$</p>                                
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla \cdot \mathbf{u} = 0 }}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla^{2} \varphi =  \frac{-F(c_{Na}-c_{Cl})}{\epsilon \epsilon_0}}}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Na} = D \, \nabla c_{Na}-\mathbf{u}\, c_{Na}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Na}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Cl} = D \, \nabla c_{Cl}-\mathbf{u}\, c_{Cl}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Cl}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${\displaystyle {\frac {\partial c_{Na}}{\partial t} = \nabla \cdot \mathbf{J}_{Na} }}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${\displaystyle {\frac {\partial c_{Cl}}{\partial t} = \nabla \cdot \mathbf{J}_{Cl} }}$$</p>
+                                    <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <aside class="notes"></aside>
+                </section>
+
+                <section class="normalHeader" id="modelDesc4"> 
+                        <div class="header">  
+                            <h2> Electrodialysis model </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="rowx">
+                                <div class="col" style="width: 25%;margin-bottom: 420px;margin-right:80px;">
+                                    <div class="dottedBox">
+                                        <ul>
+                                            <li>Hydrodynamics</li>
+                                            <li>Electric field</li>
+                                            <li>Ion transport</li>
+                                        </ul>
+                                    </div> 
+                                    <div class="figures">
+                                            <img src="figs/EDProces-5.svg" style="width: 37%;position: absolute;top: 318px;left: 32px;" class="center">
+                                    </div>
+                                </div>
+                                <div class="col sideEq" style="width: 53%;padding-top: 80px;">
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial \mathbf {u} }{\partial t}}+(\mathbf {u} \cdot \nabla )\, \mathbf {u} -\nu \,\nabla ^{2}\mathbf {u} \,  = f }$$</p>                                
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla \cdot \mathbf{u} = 0 }}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla^{2} \varphi =  \frac{-F(c_{Na}-c_{Cl})}{\epsilon \epsilon_0}}}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Na} = D \, \nabla c_{Na}-\mathbf{u}\, c_{Na}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Na}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Cl} = D \, \nabla c_{Cl}-\mathbf{u}\, c_{Cl}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Cl}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${\displaystyle {\frac {\partial c_{Na}}{\partial t} = \nabla \cdot \mathbf{J}_{Na} }}$$</p>
+                                    <p style="display: block;color: lightgrey;" class="eq small">$${\displaystyle {\frac {\partial c_{Cl}}{\partial t} = \nabla \cdot \mathbf{J}_{Cl} }}$$</p>
+                                    <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <aside class="notes"></aside>
+                </section>
+
+                <section class="normalHeader" id="modelDesc5"> 
+                        <div class="header">  
+                            <h2> Electrodialysis model </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="rowx">
+                                <div class="col" style="width: 25%;margin-bottom: 420px;margin-right:80px;">
+                                    <div class="dottedBox">
+                                        <ul>
+                                            <li>Hydrodynamics</li>
+                                            <li>Electric field</li>
+                                            <li>Ion transport</li>
+                                        </ul>
+                                    </div> 
+                                    <div class="figures">
+                                            <img src="figs/EDProces-5.svg" style="width: 37%;position: absolute;top: 318px;left: 32px;" class="center">
+                                    </div>
+                                </div>
+                                <div class="col sideEq" style="width: 53%;padding-top: 80px;">
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial \mathbf {u} }{\partial t}}+(\mathbf {u} \cdot \nabla )\, \mathbf {u} -\nu \,\nabla ^{2}\mathbf {u} \,  = f }$$</p>                                
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla \cdot \mathbf{u} = 0 }}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla^{2} \varphi =  \frac{-F(c_{Na}-c_{Cl})}{\epsilon \epsilon_0}}}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Na} = D \, \nabla c_{Na}-\mathbf{u}\, c_{Na}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Na}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Cl} = D \, \nabla c_{Cl}-\mathbf{u}\, c_{Cl}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Cl}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial c_{Na}}{\partial t} = \nabla \cdot \mathbf{J}_{Na} }}$$</p>
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial c_{Cl}}{\partial t} = \nabla \cdot \mathbf{J}_{Cl} }}$$</p>
+                                    <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <aside class="notes"></aside>
+                </section>
+
+                <section class="normalHeader" id ="ulSim1"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <h3><b>Simulations</b> (low current)</h3>
+                        <div class="rowx">
+                            <div class="col" style="width: 22%;margin-top: 100px;">
+                                <img src="figs/compDomSliceInd.svg">
+                            </div>
+                            <div class="col" style="width: 77%;float: right;" id="outerdiv">
+                                <div class="figures">
+                                    <img src="figs/Picture2.png" style="width: 70%;padding-top: 0px;" class="center">
+                                    <img src="figs/lineplots.png" style="width: 85%;padding-left: -30px;" class="center fragment">
+                                </div>
+                            </div>
+                        </div>
+                        <p><b>Misschien slide toevoegen met toenemende concentration polarisatie</b></p>
+                    </div>
+                    <p class="confidentialFooter">Confidential</p>
+                     <aside class="notes">
+                        <p>The interesting thing about electrodialysis is that there are additional processes occuring when you increase the current</p>
+                        <p>Mass transfer limitation lead to additional convections</p>
+                    </aside>
+                </section>
+                
+                <section class="normalHeader" id ="UvsI1"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <div class="figures">
+                            <img src="figs/UvsUTheorFin-2.svg" style="height: 400px;margin-top:100px;" class="center">
+                        </div>
+                    </div>
+                    <p class="confidentialFooter">Confidential</p>
+                        <aside class="notes">
+                            <p>Kan cool zijn omdat als vraagstelling te doen maar wat gebeurt er hier nu als je de stroomsterkte opdrijft wat levert er hier opeens dit extra transport aan?</p>
+                    </aside>
+                </section>
+                
+                <section class="normalHeader" id ="UvsI2"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <div class="figures">
+                            <img src="figs/UvsUTheorFin-1.svg" style="height: 400px;margin-top:100px;" class="center">
+                        </div>
+                    </div>
+                    <p class="confidentialFooter">Confidential</p>
+                        <aside class="notes">
+                            <p>Kan cool zijn omdat als vraagstelling te doen maar wat gebeurt er hier nu als je de stroomsterkte opdrijft wat levert er hier opeens dit extra transport aan?</p>
+                    </aside>
+                </section>
+                
+                <section class="normalHeader" id ="UvsI3"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <div class="figures">
+                            <img src="figs/UvsUTheorFin.svg" style="height: 400px;margin-top:100px;" class="center">
+                        </div>
+                    </div>
+                    <p class="confidentialFooter">Confidential</p>
+                        <aside class="notes">
+                            <p>Kan cool zijn omdat als vraagstelling te doen maar wat gebeurt er hier nu als je de stroomsterkte opdrijft wat levert er hier opeens dit extra transport aan?</p>
+                    </aside>
+                </section>
+                
+                <section class="normalHeader" id ="UvsI3"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <div class="figures">
+                            <img src="figs/UvsUTheorFinHL.svg" style="height: 400px;margin-top:100px;" class="center">
+                        </div>
+                    </div>
+                    <p class="confidentialFooter">Confidential</p>
+                        <aside class="notes">
+                            <p>Kan cool zijn omdat als vraagstelling te doen maar wat gebeurt er hier nu als je de stroomsterkte opdrijft wat levert er hier opeens dit extra transport aan?</p>
+                    </aside>
+                </section>
+
+                <section class="normalHeader" id ="valid"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <h3><b>Validation</b></h3>
+                        <div class="figures">
+                            <img src="figs/LCD_ifo_conc.svg" style="height: 400px;margin-top:50px;" class="center">
+                        </div>
+                    </div>
+                    <p class="confidentialFooter">Confidential</p>
+                     <aside class="notes">
+                    </aside>
+                </section>
+                                
+                <section class="normalHeader" id ="UvsI4"> 
+                        <div class="header">  
+                            <h2> Electrodialysis model </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="figures">
+                                <img src="figs/UvsUTheorFin.svg" style="height: 400px;margin-top:100px;" class="center">
+                            </div>
+                        </div>
+                        <p class="confidentialFooter">Confidential</p>
+                            <aside class="notes">
+                                <p>The model as described here is only able to simulate the ohmic region and a part of the plateau region. It stops working so what happens here?</p>
+                        </aside>
+                    </section>
+
+                <section class="normalHeader" id="modelDesc5"> 
+                        <div class="header">  
+                            <h2> Electrodialysis model </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="rowx">
+                                <div class="col" style="width: 25%;margin-bottom: 420px;margin-right:80px;">
+                                    <div class="dottedBox">
+                                        <ul>
+                                            <li>Hydrodynamics</li>
+                                            <li>Electric field</li>
+                                            <li>Ion transport</li>
+                                        </ul>
+                                    </div> 
+                                    <div class="figures">
+                                            <img src="figs/EDProces-5.svg" style="width: 37%;position: absolute;top: 318px;left: 32px;" class="center">
+                                    </div>
+                                </div>
+                                <div class="col sideEq" style="width: 60%;padding-top: 50px;">
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial \mathbf {u} }{\partial t}}+(\mathbf {u} \cdot \nabla )\, \mathbf {u} -\nu \,\nabla ^{2}\mathbf {u} \,  = f }$$</p>                                
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla \cdot \mathbf{u} = 0 }}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla^{2} \varphi =  \frac{-F(c_{Na}-c_{Cl})}{\epsilon \epsilon_0}}}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Na} = D \, \nabla c_{Na}-\mathbf{u}\, c_{Na}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Na}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Cl} = D \, \nabla c_{Cl}-\mathbf{u}\, c_{Cl}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Cl}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial c_{Na}}{\partial t} = \nabla \cdot \mathbf{J}_{Na} }}$$</p>
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial c_{Cl}}{\partial t} = \nabla \cdot \mathbf{J}_{Cl} }}$$</p>
+                                    <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <aside class="notes"></aside>
+                </section>
+
+                <section class="normalHeader" id="modelDesc5"> 
+                        <div class="header">  
+                            <h2> Electrodialysis model </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="rowx">
+                                <div class="col" style="width: 25%;margin-bottom: 420px;margin-right:80px;">
+                                    <div class="dottedBox">
+                                        <ul>
+                                            <li>Hydrodynamics</li>
+                                            <li>Electric field</li>
+                                            <li>Ion transport</li>
+                                        </ul>
+                                    </div> 
+                                    <div class="figures">
+                                            <img src="figs/EDProces-4.svg" style="width: 37%;position: absolute;top: 318px;left: 32px;" class="center">
+                                    </div>
+                                </div>
+                                <div class="col sideEq" style="width: 60%;padding-top: 80px;">
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial \mathbf {u} }{\partial t}}+(\mathbf {u} \cdot \nabla )\, \mathbf {u} -\nu \,\nabla ^{2}\mathbf {u} \,  \color{red}{-\frac{F}{\rho}(c_{Na}-c_{Cl})\nabla \varphi}  = f }$$</p>                                
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla \cdot \mathbf{u} = 0 }}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla^{2} \varphi =  \frac{-F(c_{Na}-c_{Cl})}{\epsilon \epsilon_0}}}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Na} = D \, \nabla c_{Na}-\mathbf{u}\, c_{Na}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Na}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Cl} = D \, \nabla c_{Cl}-\mathbf{u}\, c_{Cl}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Cl}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial c_{Na}}{\partial t} = \nabla \cdot \mathbf{J}_{Na} }}$$</p>
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial c_{Cl}}{\partial t} = \nabla \cdot \mathbf{J}_{Cl} }}$$</p>
+                                    <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <aside class="notes"></aside>
+                </section>
+
+                <section class="normalHeader" id ="sim3"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <h3><b>Simulations</b> (high current)</h3>
+                        <div class="rowx">
+                            <div class="col" style="width: 22%;padding-top: 100px;">
+                                <img src="figs/compDomSliceInd.png">
+                            </div>
+                            <div class="col" style="width: 77%;padding-top: -100px;">
+                                <div id="rotatedVideo" class="videoWrapper">
+                                    <video id="electroConv2" nocontrols loop autoplay>
+                                        <source src="vids/electroConvProperScale2_cropped.webm" type="video/webm" style="width: 200px;">
+                                    Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="confidentialFooter">Confidential</p>
+                     <aside class="notes">
+                    </aside>
+                </section>
+
+                <section class="normalHeader" id="model4"> 
+                        <div class="header">  
+                            <h2> Simplified electrodialysis model </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="rowx">
+                                <div class="col" style="width: 30%;margin-bottom: 420px;margin-right:80px;">
+                                    <div class="dottedBox">
+                                        <p><b>Some simplifications:</b></p>
+                                        <ul>
+                                            <li>Underlimiting</li>
+                                            <li>Electroneutrality</li>
+                                        </ul>
+                                    </div>    
+                                </div>
+                                <div class="col sideEq" style="width: 60%;padding-top: 80px;">
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial \mathbf {u} }{\partial t}}+(\mathbf {u} \cdot \nabla )\, \mathbf {u} -\nu \,\nabla ^{2}\mathbf{u} \, \color{red}{-\frac{F}{\rho}(c_{Na}-c_{Cl})\nabla \varphi} =f}$$</p>                                
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla \cdot \mathbf{u} = 0 }}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla^{2} \varphi =  \frac{-F(c_{Na}-c_{Cl})}{\epsilon \epsilon_0}}}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Na} = D \, \nabla c_{Na}-\mathbf{u}\, c_{Na}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Na}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{Cl} = D \, \nabla c_{Cl}-\mathbf{u}\, c_{Cl}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{Cl}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial c_{Na}}{\partial t} = \nabla \cdot \mathbf{J}_{Na} }}$$</p>
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial c_{Cl}}{\partial t} = \nabla \cdot \mathbf{J}_{Cl} }}$$</p>
+                                    <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <aside class="notes">
+                            <p>Nog aanpassen zodat met fragmenten kan overgegaan worden van PNP naar LNP model</p>
+                        </aside>
+                </section>
+
+                <section class="normalHeader" id="model4"> 
+                        <div class="header">  
+                            <h2> Simplified electrodialysis model </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="rowx">
+                                <div class="col" style="width: 30%;margin-bottom: 420px;margin-right:80px;">
+                                    <div class="dottedBox">
+                                        <p><b>Some simplifications:</b></p>
+                                        <ul>
+                                            <li>Underlimiting</li>
+                                            <li>Electroneutrality</li>
+                                        </ul>
+                                    </div>    
+                                </div>
+                                <div class="col sideEq2" style="width: 53%;margin-top: -100px;">
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial \mathbf {u} }{\partial t}}+(\mathbf {u} \cdot \nabla )\, \mathbf {u} -\nu \,\nabla ^{2}\mathbf{u} =f }$$</p>                                
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla \cdot \mathbf{u} = 0 }}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle {\nabla^{2} \varphi =  0 }}$$</p>
+                                    <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{NaCl} = D \, \nabla c_{NaCl}-\mathbf{u}\, c_{NaCl}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{NaCl}\, \nabla \varphi}}$$</p>
+                                    <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial c_{NaCl}}{\partial t} = \nabla \cdot \mathbf{J}_{NaCl} }}$$</p>
+                                    <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <aside class="notes">
+                            <p>Nog aanpassen zodat met fragmenten kan overgegaan worden van PNP naar LNP model</p>
+                        </aside>
+                </section>
+
+                <section class="normalHeader" id="summary"> 
+                        <div class="header">  
+                            <h2> Summary </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <h3><b></b></h3>
+                            <div class="rowx">
+                                <div class="col" style="width: 49%;">
+                                    <p><b>Simplified model </b> <span style="color: gray;">(LNP)</span>:</p>
+                                    <ul>
+                                        <li>Steady-state &amp; transient</li>
+                                        <li style="color:green">Efficient</li>
+                                        <li style="color:crimson">Only underlimiting</li>
+                                    </ul>
+                                </div>
+                                <div class="col" style="width: 49%;">
+                                    <p><b>Poisson-Nernst-Planck </b> <span style="color: gray">(PNP)</span>:</p>
+                                    <ul>
+                                        <li>Transient</li>
+                                        <li style="color: crimson">Computationally demanding</li>
+                                        <li style="color:green">Underlimiting &amp; overlimiting</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p><b>Hier een U vs. I curve plaatsen met experiment</b></p>
+                            <p class="fragment">&rightarrow; Need for efficient overlimiting model</p>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>Singularly-perturbed PDE</li>
+                                <li>Very fine mesh resolution (µm) </li>
+                                <li>Small timesteps</li>
+                                <li>Fouling is a slow transient process</li>
+                            </ul>
+                        </aside>
+                </section>
+
+                <section class="normalHeader" id="simpler"> 
+                        <div class="header">  
+                            <h2> Reynolds-averaging </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <p style="margin-top: 20px;display: block;" class="eq">$${\displaystyle {\phi(x,t) = \overline{\phi(x)} + \phi(x,t)' }}$$</p>
+                            <p style="margin-top: 40px;"><b>RANS for magnetohydrodynamics:</b></p>
+                            <ul style="padding-left: 20px;">
+                                <li class="fragment"><a href="https://doi.org/10.1016/j.ijheatfluidflow.2014.04.003">Wilson, Craft, Iacovides (2014)</a> </li>
+                                <li class="fragment">...</li>
+                            </ul>
+                            <p class="fragment" style="margin-top: 40px;"><b>RANS for electroconvection:</b></p>
+                            <ul style="padding-left: 20px;">
+                                <li class="fragment"><a href="https://doi.org/10.1016/j.ijheatfluidflow.2018.03.014">Kourmatzis, Shrimpton (2018)</a> </li>
+                            </ul>
+                            <p style="margin-top: 20px;padding-left: 20px;" class="fragment"> &rightarrow; Limited research</p>
+                        </div>
+                        <aside class="notes">
+                            <p>The paper on magnetohydrodynamics did only consider an imposed magnetic fields and considers a homogeneous electrically conducting fluid. This is a simpler approach</p>
+                            <p> The transport of charged species is done through a single equation, aka
+                                the space charge transport equation for which the boundary conditions are known, because the charge is injected in the system. In our case the charge emerges from the simulation. 
+                                There are more equations this way. There is also no bulk convective flow. Future work is recommended in the modelling of chaotic and turbulent EHD flows that have a bulk convective flow. 
+                            </p>
+                            <p>Zeggen dus waar de verschillen zitten met mijn systeem</p>
+                        </aside>
+                </section>
+
+                <section class="normalHeader" id="RAPNP1"> 
+                        <div class="header">  
+                            <h2> Reynolds-averaged electrodialysis model </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="rowx">
+                                <div class="col" style="width: 100%;padding-top: 10px;">
+                                    <p style="display: block;" class="eq tiny">$${\displaystyle {\frac {\partial \mathbf{u}_i }{\partial t} + \mathbf{u}_j \, \cfrac{\partial \mathbf{u}_i}{\partial x_j} - \nu \,  \cfrac{\partial^2 \mathbf{u}_i}{\partial x^2_j} - \frac {D\, z\, e}{k_{\mathrm {B} }\, T}\cfrac{\partial \varphi}{\partial x_i}} = f}$$</p>                                
+                                    <p style="display: block;" class="eq tiny">$${\displaystyle {\cfrac{\partial \mathbf{u}_j}{\partial x_j} = 0 }}$$</p>
+                                    <p style="display: block;" class="eq tiny">$${ \displaystyle {\cfrac{\partial}{\partial x_i} \left(  \cfrac{\partial \varphi}{\partial x_i} \right)  = -  \frac{F(c_{Na}-c_{Cl})}{\epsilon \epsilon_0}}}$$</p>
+                                    <p style="display: block;" class="eq tiny">$${\displaystyle {\cfrac {\partial c_{Na}}{\partial t} + \mathbf{u}_j \, \cfrac{\partial c_{Na}}{\partial x_j}  - D \,  \cfrac{\partial^2 c_{Na}}{\partial x^2_j} - {\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}\, \cfrac{\partial}{\partial x_j}(c_{Na}\,\cfrac{\partial \varphi}{\partial x_i})}} = 0 $$</p>
+                                    <p style="display: block;" class="eq tiny">$${\displaystyle {\cfrac {\partial c_{Cl}}{\partial t} + \mathbf{u}_j \, \cfrac{\partial c_{Cl}}{\partial x_j}  - D \,  \cfrac{\partial^2 c_{Cl}}{\partial x^2_j} - {\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}\, \cfrac{\partial}{\partial x_j}(c_{Cl}\,\cfrac{\partial \varphi}{\partial x_i})}} = 0 $$</p>
+                                    <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                </div>
+                            </div>
+                            <p style="margin-top: 20px;display: block;" class="eq fragment">$${\displaystyle {\phi(x,t) = \overline{\phi(x)} + \phi(x,t)' }}$$</p>
+                        </div>
+                        <aside class="notes">
+                            <p>http://s177835660.websitehome.co.uk/research/THESIS/append_C.pdf</p>
+                        </aside>
+                </section>
+
+                <section class="normalHeader" id="RAPNP2"> 
+                        <div class="header">  
+                            <h2> Reynolds-averaged electrodialysis model </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <div class="rowx">
+                                <div class="col" style="width: 100%;padding-top: 10px;">
+                                    <p style="display: block;" class="eq tiny">$${\displaystyle {\frac {\partial \overline{\mathbf{u}_i} }{\partial t} + \overline{\mathbf{u}_j} \, \cfrac{\partial \overline{\mathbf{u}_i}}{\partial x_j} - \nu \,  \frac{\partial^2 \overline{\mathbf{u}_i}}{\partial x^2_j} - \frac{F}{\rho}(\overline{c_{Na}}-\overline{c_{Cl}})  \cfrac{\partial \overline{\varphi}}{\partial x_i}} \color{red}{ + \cfrac{\partial \overline{\mathbf{u}'_i \mathbf{u}'_j}}{\partial x_j}} - \color{blue}{\frac{F}{\rho}(c_{Na}'-c_{Cl}')  \cfrac{\partial \varphi'}{\partial x_i}} = f}$$</p>                                
+                                    <p style="display: block;" class="eq tiny">$${\displaystyle {\cfrac{\partial \overline{\mathbf{u}_j}}{\partial x_j} = 0 }}$$</p>
+                                    <p style="display: block;" class="eq tiny">$${ \displaystyle {\cfrac{\partial}{\partial x_i} \left(  \cfrac{\partial \overline{\varphi}}{\partial x_i} \right)  = -  \frac{F(\overline{c_{Na}} - \overline{c_{Cl}})}{\epsilon \epsilon_0}}}$$</p>
+                                    <p style="display: block;" class="eq tiny">$${\displaystyle {\cfrac {\partial \overline{c_{Na}}}{\partial t} + \mathbf{u}_j \, \cfrac{\partial \overline{c_{Na}}}{\partial x_j}  - D \,  \cfrac{\partial^2 \overline{c_{Na}}}{\partial x^2_j} - {\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}\, \cfrac{\partial}{\partial x_j}(\overline{c_{Na}}\,\cfrac{\partial \overline{\varphi}}{\partial x_i})}} \color{red}{ + \cfrac{\partial \overline{c_{Na}' \mathbf{u}'_j}}{\partial x_j}} \color{blue}{- {\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}\, \cfrac{\partial}{\partial x_j}(\overline{c_{Na}'\,\cfrac{\partial \varphi'}{\partial x_i})}} = 0 $$</p>
+                                    <p style="display: block;" class="eq tiny">$${\displaystyle {\cfrac {\partial \overline{c_{Cl}}}{\partial t} + \mathbf{u}_j \, \cfrac{\partial \overline{c_{Cl}}}{\partial x_j}  - D \,  \cfrac{\partial^2 \overline{c_{Cl}}}{\partial x^2_j} - {\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}\, \cfrac{\partial}{\partial x_j}(\overline{c_{Cl}}\,\cfrac{\partial \overline{\varphi}}{\partial x_i})}} \color{red}{ + \cfrac{\partial \overline{c_{Cl}' \mathbf{u}'_j}}{\partial x_j}} \color{blue}{- {\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}\, \cfrac{\partial}{\partial x_j}(\overline{c_{Cl}'\,\cfrac{\partial \varphi'}{\partial x_i})}} = 0 $$</p>
+                                    <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                </div>
+                            </div>
+                            <p class="fragment">&rightarrow; 6 additional terms</p>
+                        </div>
+                        <aside class="notes">
+                                <p>DNS budgetting zouden moeten uitwijzen welke termen er echt significant zijn</p>
+                                <p>Chaoticiteit</p>
+                                <p>Quite important for other applications</p>
+                                <p>Atomizers, electo-osmotic pumping (microfluidics), electrodialysis, ...</p>
+                        </aside>
+                </section>
+
+                <section class="normalHeader" id="conclusion1"> 
+                        <div class="header">  
+                            <h2> Conclusion </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            Meme
+                        </div>
+                </section>
+
+                <section class="normalHeader" id="conclusion2"> 
+                        <div class="header">  
+                            <h2> Conclusion </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <p><b>Challenges:</b></p>
+                            <ul>
+                                <li> Electrodialysis at overlimiting currents  <span style="color:gray">(mass transfer limitations)</span></li>
+                                <li> Poisson-Nernst-Planck</li>
+                            </ul>
+                            <p class="fragment" style="padding-top:20px"><b>Opportunities:</b></p>
+                            <ul>
+                                <li class="fragment">Electroneutrality assumption <span style="color:gray">(no mass transfer limitations)</span> </li>
+                                <li class="fragment">Reynolds-averaging
+                                    <ul>
+                                        <li class="fragment">Unbiasedness of turbulent fluctuation</li>
+                                    </ul>
+                                </li>
+                                <li class="fragment">Not only for electrodialysis</li>
+                            </ul>
+                        </div>
+                </section>
+
+                <section class="cover"> 
+                        <div class="paddingWrapper">
+                            <div class="header">  
+                                <img src="../../themes/biomath/figs/logo_UGent_EN_RGB_color.svg" alt="logoUGent" id="logoUGent">
+                                <img src="../../themes/biomath/figs/icon_UGent_BW_EN_RGB_color.svg" alt="logoFaculty" id="logoFaculty">    
+                                <div class=horizontalFiller></div>
+                            </div>
+                            <h2 style="font-size: 30px;"> Modelling of underlimiting and overlimiting current transport in electrodialysis: challenges and opportunities</h2>
+                            <p class="coverName"> <span style="border-bottom: 3px;border-bottom-style: dotted;border-bottom-color: lightslategray">Bram De Jaegher</span>, Ingmar Nopens, Arne Verliefde, Wim De Schepper</p>
+                            <p class="additionalInformation" style="margin-top: 30px;"> WONAPDE 2019: Numerical methods for water resources  </p>
+                            <div class="coverFooter">
+                                <div class="rowx" style="height: 50px;">
+                                    <div class="col" style="width: 55%;">
+                                        <img class="logoBiomath" src="../../themes/biomath/figs/Biomath_logo.svg" alt="logoBiomath">
+                                    </div>
+                                    <div class="col" style="width: 15%;margin-left: 50px;margin-right: 20px;">
+                                        <img id="logoPaintCover" src="figs/paint.png">
+                                    </div>
+                                    <div class="col" style="width: 20%;">
+                                        <img id="logoVitoCover" src="figs/vito.svg">
+                                    </div>
+                                </div>
+                                <div class="videoWrapper">
+                                    <video id="electroConv" nocontrols loop autoplay>
+                                        <source src="vids/electroConvBlue.webm" type="video/webm">
+                                    Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+                            <p class="confidentialFooter">Confidential</p>
+                        </div>
+                    </section>
+            </div>
+        </div>
+                
+		<script src="../../reveal.js/lib/js/head.min.js"></script>
+		<script src="../../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+                    width: 1024,
+                    height: 768,
+                    slideNumber: true,
+                    transition: 'none',
+				dependencies: [
+					{ src: '../../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
