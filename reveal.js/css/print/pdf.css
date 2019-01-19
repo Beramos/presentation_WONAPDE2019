@@ -181,3 +181,9 @@ div.coverVideo{
 	width: 1024px;
 	left: -20px;
 }
+
+#rotatedVideo {
+	bottom: -200px;
+	width: 1024px;
+	left: 0px;
+}
