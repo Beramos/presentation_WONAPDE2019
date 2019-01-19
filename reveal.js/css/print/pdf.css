@@ -174,3 +174,10 @@ p.eq.tiny span.MJXc-display {
 		margin: 0 auto;
 		display: table-cell;
 }
+
+div.coverVideo{
+	position: absolute !important;
+	bottom: -168px;
+	width: 1024px;
+	left: -20px;
+}
