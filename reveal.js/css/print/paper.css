@@ -200,4 +200,16 @@
 		font-size: 0.8em;
 	}
 
+	p.eq.small span.MJXc-display {
+    font-size: 20px !important;
+    margin: 0 auto;
+    display: table-cell;
+	}
+
+	p.eq.tiny span.MJXc-display {
+			font-size: 15px !important;
+			margin: 0 auto;
+			display: table-cell;
+	}
+
 }
