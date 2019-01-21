@@ -147,7 +147,7 @@
                                         <img id="logoVitoCover" src="figs/vito.svg">
                                     </div>
                                 </div>
-                                <div class="videoWrapper coverVideo">
+                                <div class="videoWrapper coverVideo2">
                                     <video id="electroConv" nocontrols loop autoplay>
                                       <source src="vids/electroConvBlue.webm" type="video/webm">
                                     Your browser does not support the video tag.
@@ -277,22 +277,6 @@
                                 </ul> 
 	                   </aside>
                 </section>     
-
-                <section class="normalHeader" id="foulingWhat"> 
-                        <div class="header">  
-                            <h2> Fouling in electrodialysis </h2>
-                        </div>
-                        <div class="paddingWrapper">
-                            <div class="figures" style="margin-top:50px">
-                                    <img src="figs/EDFouling.svg" style="height: 420px;">
-                            </div>
-                        </div>
-                        <aside class="notes">
-                            <p>Efkes uitleggen: what is fouling, met afbeeldingen</p>
-                            <p>Important near-wall behaviour</p>
-                            <p>Slow, transient phenomenon</p>
-                        </aside>
-                </section>
 
                 <section class="normalHeader" id="model1"> 
                         <div class="header">  
@@ -578,51 +562,6 @@
                     </aside>
                 </section>
                 
-                <section class="normalHeader" id ="UvsI3"> 
-                    <div class="header">  
-                        <h2> Electrodialysis model </h2>
-                    </div>
-                    <div class="paddingWrapper">
-                        <div class="figures">
-                            <img src="figs/UvsUTheorFinHL.svg" style="height: 400px;margin-top:100px;" class="center">
-                        </div>
-                    </div>
-                    <p class="confidentialFooter">Confidential</p>
-                        <aside class="notes">
-                            <p>Kan cool zijn omdat als vraagstelling te doen maar wat gebeurt er hier nu als je de stroomsterkte opdrijft wat levert er hier opeens dit extra transport aan?</p>
-                    </aside>
-                </section>
-
-                <section class="normalHeader" id ="valid"> 
-                    <div class="header">  
-                        <h2> Electrodialysis model </h2>
-                    </div>
-                    <div class="paddingWrapper">
-                        <h3><b>Validation</b></h3>
-                        <div class="figures">
-                            <img src="figs/LCD_ifo_conc.svg" style="height: 400px;margin-top:50px;" class="center">
-                        </div>
-                    </div>
-                    <p class="confidentialFooter">Confidential</p>
-                     <aside class="notes">
-                    </aside>
-                </section>
-                                
-                <section class="normalHeader" id ="UvsI4"> 
-                        <div class="header">  
-                            <h2> Electrodialysis model </h2>
-                        </div>
-                        <div class="paddingWrapper">
-                            <div class="figures">
-                                <img src="figs/UvsUTheorFin.svg" style="height: 400px;margin-top:100px;" class="center">
-                            </div>
-                        </div>
-                        <p class="confidentialFooter">Confidential</p>
-                            <aside class="notes">
-                                <p>The model as described here is only able to simulate the ohmic region and a part of the plateau region. It stops working so what happens here?</p>
-                        </aside>
-                    </section>
-
                 <section class="normalHeader" id="modelDesc5"> 
                         <div class="header">  
                             <h2> Electrodialysis model </h2>
@@ -776,6 +715,37 @@
                         </aside>
                 </section>
 
+                <section class="normalHeader" id ="UvsI3"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <h3><b>Validation</b></h3>
+                        <div class="figures">
+                            <img src="figs/UvsUTheorFinHL.svg" style="height: 400px;margin-top:100px;" class="center">
+                        </div>
+                    </div>
+                    <p class="confidentialFooter">Confidential</p>
+                        <aside class="notes">
+                            <p>Kan cool zijn omdat als vraagstelling te doen maar wat gebeurt er hier nu als je de stroomsterkte opdrijft wat levert er hier opeens dit extra transport aan?</p>
+                    </aside>
+                </section>
+
+                <section class="normalHeader" id ="valid"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <h3><b>Validation</b></h3>
+                        <div class="figures">
+                            <img src="figs/LCD_ifo_conc.svg" style="height: 400px;margin-top:50px;" class="center">
+                        </div>
+                    </div>
+                    <p class="confidentialFooter">Confidential</p>
+                     <aside class="notes">
+                    </aside>
+                </section>
+
                 <section class="normalHeader" id="summary"> 
                         <div class="header">  
                             <h2> Summary </h2>
@@ -799,6 +769,9 @@
                                         <li style="color:green">Underlimiting &amp; overlimiting</li>
                                     </ul>
                                 </div>
+                            </div>
+                            <div class="figures fragment">
+                                    <img src="figs/UvsUTheorFin.svg" style="height: 300px;margin-top:10px;" class="center">
                             </div>
                             <p class="fragment">&rightarrow; Need for efficient overlimiting model</p>
                         </div>
@@ -901,7 +874,8 @@
                                 <li class="fragment">Electroneutrality assumption <span style="color:gray">(no mass transfer limitations)</span> </li>
                                 <li class="fragment">Reynolds-averaging
                                     <ul>
-                                        <li class="fragment">Unbiasedness of turbulent fluctuation</li>
+                                        <li class="fragment">average turbulent fluctuation = 0</li>
+                                        <li class="fragment"> 2-3 new terms to be modelled    </li>
                                     </ul>
                                 </li>
                                 <li class="fragment">Not only for electrodialysis</li>
@@ -931,7 +905,7 @@
                                         <img id="logoVitoCover" src="figs/vito.svg">
                                     </div>
                                 </div>
-                                <div class="videoWrapper coverVideo">
+                                <div class="videoWrapper coverVideo2">
                                     <video id="electroConv" nocontrols loop autoplay>
                                         <source src="vids/electroConvBlue.webm" type="video/webm">
                                     Your browser does not support the video tag.
