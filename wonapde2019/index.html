@@ -396,14 +396,14 @@
                                     <li> Velocity <span style="color: grey">(trivial)</span>: </li>
                                     <li> Concentration
                                         <ul>
-                                            <li>Dirichlet</li>
-                                            <li>Neumann <span style="color: grey">(zero flux)</span></li>
+                                            <li>Ion 1: dirichlet</li>
+                                            <li>Ion 2: Neumann <span style="color: grey">(zero flux)</span></li>
                                         </ul>
                                     </li>
                                     <li>Electric potential
                                         <ul>
-                                            <li>Dirichlet <span style="color: grey">(Ohmic potential drop)</span></li>
-                                            <li>Dirichlet <span style="color: grey">(junction potentials)</span></li>
+                                            <li>Dirichlet <span style="color: grey">(Ohmic potential drop)</span> <span style="font-size: 30px !important;">$$\varphi_2 = \varphi_1 - R\,I$$ </span></li>
+                                            <li>Dirichlet <span style="color: grey">(junction potentials)</span> $$\Delta \, \varphi = \frac{R\, T\,}{Z \, F} ln \left( \frac{c_m}{c_b} \right) $$ </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -430,7 +430,7 @@
                             <div class="col" style="width: 77%;float: right;" id="outerdiv">
                                 <div class="figures">
                                     <img src="figs/Picture2.png" style="width: 70%;padding-top: 0px;" class="center">
-                                    <img src="figs/concLine.png" style="width: 45%;padding-left: -30px;" class="center fragment">
+                                    <img src="figs/lineplots.png" style="width: 85%;padding-left: -30px;" class="center fragment">
                                 </div>
                             </div>
                         </div>
@@ -616,7 +616,7 @@
                         </div>
                         <div class="paddingWrapper">
                             <div class="rowx">
-                                <div class="col" style="width: 30%;margin-bottom: 420px;margin-right:80px;">
+                                <div class="col" style="width: 30%;margin-bottom: 670px;margin-right:80px;">
                                     <div class="dottedBox">
                                         <p><b>Some simplifications:</b></p>
                                         <ul>
@@ -625,13 +625,24 @@
                                         </ul>
                                     </div>    
                                 </div>
-                                <div class="col sideEq2" style="width: 53%;margin-top: -100px;">
+                                <div class="col sideEq2" style="width: 53%;margin-top: 250px;">
                                     <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial \mathbf {u} }{\partial t}}+(\mathbf {u} \cdot \nabla )\, \mathbf {u} -\nu \,\nabla ^{2}\mathbf{u} =f }$$</p>                                
                                     <p style="display: block;" class="eq small">$${ \displaystyle {\nabla \cdot \mathbf{u} = 0 }}$$</p>
                                     <p style="display: block;" class="eq small">$${ \displaystyle {\nabla^{2} \varphi =  0 }}$$</p>
                                     <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{NaCl} = D \, \nabla c_{NaCl}-\mathbf{u}\, c_{NaCl}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{NaCl}\, \nabla \varphi}}$$</p>
                                     <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial c_{NaCl}}{\partial t} = \nabla \cdot \mathbf{J}_{NaCl} }}$$</p>
                                     <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                    <div class="fragment">
+                                        <h3><b>Boundary conditions</b></h3>
+                                        <ul>
+                                            <li>Concentration
+                                                <ul>
+                                                    <li>Neumann:</li>
+                                                    <p style="display: block;" class="eq small">$${\displaystyle  \left( \frac{\partial c_{NaCl}}{\partial x}\right) = - \frac{i}{F \, D}(T_1 - t_1) }$$</p>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -786,28 +797,11 @@
                         </aside>
                 </section>
 
-                <section class="normalHeader" id="conclusion2"> 
+                <section class="normalHeader" id="RAPNP2"> 
                         <div class="header">  
-                            <h2> Conclusion </h2>
+                            <h2> Acknowledgement </h2>
                         </div>
-                        <div class="paddingWrapper">
-                            <p><b>Challenges:</b></p>
-                            <ul>
-                                <li> Electrodialysis at overlimiting currents  <span style="color:gray">(mass transfer limitations)</span></li>
-                                <li> Extended Poisson-Nernst-Planck</li>
-                            </ul>
-                            <p class="fragment" style="padding-top:20px"><b>Opportunities:</b></p>
-                            <ul>
-                                <li class="fragment">Electroneutrality assumption <span style="color:gray">(no mass transfer limitations)</span> </li>
-                                <li class="fragment">Reynolds-averaging
-                                    <ul>
-                                        <li class="fragment">average turbulent fluctuation = 0</li>
-                                        <li class="fragment"> 2-3 new terms to be modelled</li>
-                                    </ul>
-                                </li>
-                                <li class="fragment">Not only for electrodialysis</li>
-                            </ul>
-                        </div>
+                        <div class="paddingWrapper"></div>
                 </section>
 
                 <section class="cover"> 
