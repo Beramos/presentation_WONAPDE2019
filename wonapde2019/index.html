@@ -73,8 +73,40 @@
                             </div>
                         </div>
                     </div>
+                    <aside class="notes">
+                        <p>https://www.nikonians.org/website/var/assets/res/images/2014_02/20140203_081757_image_6_large.jpg</p>
+                    </aside>
                 </section>
 
+                <section class="normalHeader"> 
+                    <div class="paddingWrapper">
+                        <div class="figures" style="margin-top:20px">
+                            <img src="figs/EngineerAtMathConference.jpg" style="height: 600px;">
+                        </div>
+                        <a href="https://www.nikonians.org/website/var/assets/res/images/2014_02/20140203_081757_image_6_large.jpg">Source: nikonians.org</a>
+                    </div>
+                    <aside class="notes">
+                   </aside>
+                </section>
+                <!--
+                <section class="normalHeader" id="keyMess"> 
+                        <div class="header">  
+                            <h2> Introduction </h2>
+                        </div>
+                        <div class="paddingWrapper">
+                            <h3><b>Main challenges</b></h3>
+                            <ul>
+                                <li class="fragment"> Practical stability </li>
+                                <li class="fragment"> Discretisation </li> 
+                                <li class="fragment"> Coupled boundary conditions</li>
+                            </ul>
+                        </div>
+                        <aside class="notes">
+                            <p>With this talk I would like to take the opportunity to show you other side of the curtain. So it comes more from a model perspective than from numerical point of view.</p>
+                        </aside>
+                </section>
+                -->
+                
                 <section class="normalHeader"> 
                     <div class="paddingWrapper">
                         <div class="figures" style="margin-top:20px">
@@ -124,44 +156,13 @@
                         </div>
                     </div>
                 </section>
-                
-                <section class="cover"> 
-                        <div class="paddingWrapper">
-                            <div class="header">  
-                                <img src="../themes/biomath/figs/logo_UGent_EN_RGB_color.svg" alt="logoUGent" id="logoUGent">
-                                <img src="../themes/biomath/figs/icon_UGent_BW_EN_RGB_color.svg" alt="logoFaculty" id="logoFaculty">    
-                                <div class=horizontalFiller></div>
-                            </div>
-                            <h2 style="font-size: 30px;"> Modelling of underlimiting and overlimiting current transport in electrodialysis: challenges and opportunities</h2>
-                            <p class="coverName"> <span style="border-bottom: 3px;border-bottom-style: dotted;border-bottom-color: lightslategray">Bram De Jaegher</span>, Ingmar Nopens, Arne Verliefde, Wim De Schepper</p>
-                            <p class="additionalInformation" style="margin-top: 30px;"> WONAPDE 2019: Numerical methods for water resources  </p>
-                            <div class="coverFooter">
-                                <div class="rowx" style="height: 50px;">
-                                    <div class="col" style="width: 55%;">
-                                        <img class="logoBiomath" src="../themes/biomath/figs/Biomath_logo.svg" alt="logoBiomath">
-                                    </div>
-                                    <div class="col" style="width: 15%;margin-left: 50px;margin-right: 20px;">
-                                        <img id="logoPaintCover" src="figs/paint.png">
-                                    </div>
-                                    <div class="col" style="width: 20%;">
-                                        <img id="logoVitoCover" src="figs/vito.svg">
-                                    </div>
-                                </div>
-                                <div class="videoWrapper coverVideo2">
-                                    <video id="electroConv" nocontrols loop autoplay>
-                                      <source src="vids/electroConvBlue.webm" type="video/webm">
-                                    Your browser does not support the video tag.
-                                    </video>
-                                </div>
-                            </div>
-                        </div>
-                </section>
 
                 <section class="normalHeader" id="EDIntro"> 
-                    <div class="header">  
-                        <h2> Electrodialysis </h2>
+                    <div class="header">
+                        <h2>Introduction</h2>
                     </div>
                     <div class="paddingWrapper">
+                            <h3><b>Electrodialysis</b></h3>
                        <div class="figures">
                            <img src="figs/ED.svg" style="margin-top: 50px;">
                        </div>
@@ -172,128 +173,15 @@
 	                   </aside>
                 </section>     
 
-                <section class="normalHeader" id="foul1"> 
-                    <div class="header">  
-                        <h2> Fouling in electrodialysis </h2>
-                    </div>
-                    <div class="paddingWrapper">
-                        <div class="container">
-                            <div class="rowx" style="height:200px;border: none">
-                                <div class="column" style="height: 100%;float: left;width: 50%">
-                                    <ul style="position:absolute; margin-top:80px;left:80px;">
-                                        <li><b>Seawater</b></li>
-                                    </ul>
-                                </div>
-                                <div class="column" style="height: 100%;float: right;width: 40%">
-                                    <div class="figures" style="margin-top:20px">
-                                        <img src="figs/proper.png" style="height: 160px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rowx fragment" style="height:200px;border: none">
-                                <div class="column" style="height: 100%;float: left;width: 50%">
-                                    <ul style="position:absolute; margin-top:80px;left:80px;">
-                                        <li><b>Whey</b></li>
-                                    </ul>
-                                </div>
-                                <div class="column" style="height: 100%;float: right;width: 40%">
-                                    <div class="figures" style="margin-top:20px">
-                                        <img src="figs/proper.png" style="height: 160px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rowx fragment" style="height:200px;border: none">
-                                <div class="column" style="height: 100%;float: left;width: 50%">
-                                    <ul style="position:absolute; margin-top:80px;left:80px;">
-                                        <li><b>Bio-based streams</b></li>
-                                    </ul>
-                                </div>
-                                <div class="column" style="height: 100%;float: right;width: 40%">
-                                    <div class="figures" style="margin-top:20px">
-                                        <img src="figs/fouleed.png" style="height: 160px;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        <aside class="notes">
-                            Op deze slide in het midden nog zo'n 3D voorstelling van ED zoals slide thesis PaInT 
-	                   </aside>
-                </section>     
-                
-
-                <section class="normalHeader" id="foul2"> 
-                    <div class="header">  
-                        <h2> Fouling in electrodialysis </h2>
-                    </div>
-                    <div class="paddingWrapper">
-                        <div class="container">
-                            <div class="rowx" style="height:200px;border: none">
-                                <div class="column" style="height: 100%;float: left;width: 50%">
-                                    <ul style="position:absolute; margin-top:80px;left:80px;">
-                                        <li><b>Seawater</b></li>
-                                    </ul>
-                                </div>
-                                <div class="column" style="height: 100%;float: right;width: 40%">
-                                    <div class="figures" style="margin-top:20px">
-                                        <img src="figs/proper.png" style="height: 160px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rowx" style="height:200px;border: none">
-                                <div class="column" style="height: 100%;float: left;width: 50%">
-                                    <ul style="position:absolute; margin-top:80px;left:80px;">
-                                        <li><b>Whey</b></li>
-                                    </ul>
-                                </div>
-                                <div class="column" style="height: 100%;float: right;width: 40%">
-                                    <div class="figures" style="margin-top:20px">
-                                        <img src="figs/proper.png" style="height: 160px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rowx" style="height:200px;border: none;">
-                                <div class="column" style="height: 100%;float: left;width: 50%;">
-                                    <ul style="position:absolute; margin-top:80px;left:80px;">
-                                        <li style="border-bottom: 2px dashed grey;"><b>Bio-based streams</b></li>
-                                    </ul>
-                                </div>
-                                <div class="column" style="height: 100%;float: right;width: 40%">
-                                    <div class="figures" style="margin-top:20px">
-                                        <img src="figs/fouleed.png" style="height: 160px;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        <aside class="notes">
-                                <p><b>Quite some potential in bio-based process streams</b></p>
-                                <p>Puntje (4) notes</p>
-                                <p>For the latter stream there is a great interest from industry, these streams have a quite an interesting "value"</p>
-                                <p>Some examples: </p>
-                                <ul>
-                                    <li>Detoxification of biomass for ethanol production</li>
-                                    <li>Extraction of organic acids from fermentation broth</li>
-                                </ul> 
-	                   </aside>
-                </section>     
-
                 <section class="normalHeader" id="model1"> 
                         <div class="header">  
-                            <h2> Solving the fouling hurdle </h2>
+                            <h2> Introduction </h2>
                         </div>
                         <div class="paddingWrapper">
-                            <ul>
-                                <li>Trial &amp; error experimentation</li>
-                                <li class="fragment">Modelling
-                                    <ul>
-                                        <li class="fragment">Model-based design</li>
-                                        <div class="figures fragment" style="margin-top:20px">
-                                            <img src="figs/Picture1.png" style="height: 320px;">
-                                        </div>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <h3><b>Research motivation</b></h3>
+                            <div class="figures" style="margin-top:80px">
+                                <img src="figs/Picture1.png" style="height: 380px;">
+                            </div>
                         </div>
                         <aside class="notes">
                         </aside>
@@ -492,6 +380,44 @@
                         <aside class="notes"></aside>
                 </section>
 
+                <section class="normalHeader" id ="bc1"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <h3><b>Boundary conditions</b></h3>
+                        <div class="rowx">
+                            <div class="col" style="width: 15%;margin-right:80px;">
+                                <div class="figures">
+                                        <img src="figs/compDomSliceInd.svg" style="width: 25%;position: absolute;top: 250px;left: 40px;" class="center">
+                                </div>
+                            </div>
+                            <div class="col" style="width: 80%;float: right" id="outerdiv">
+                                <ul style="margin-left:200px;">
+                                    <li> Velocity <span style="color: grey">(trivial)</span>: </li>
+                                    <li> Concentration
+                                        <ul>
+                                            <li>Ion 1: dirichlet</li>
+                                            <li>Ion 2: Neumann <span style="color: grey">(zero flux)</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>Electric potential
+                                        <ul>
+                                            <li>Dirichlet <span style="color: grey">(Ohmic potential drop)</span> <span style="font-size: 30px !important;">$$\varphi_2 = \varphi_1 - R\,I$$ </span></li>
+                                            <li>Dirichlet <span style="color: grey">(junction potentials)</span> $$\Delta \, \varphi = \frac{R\, T\,}{Z \, F} ln \left( \frac{c_m}{c_b} \right) $$ </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="confidentialFooter">Confidential</p>
+                     <aside class="notes">
+                        <p>The interesting thing about electrodialysis is that there are additional processes occuring when you increase the current</p>
+                        <p>Mass transfer limitation lead to additional convections</p>
+                    </aside>
+                </section>
+                
                 <section class="normalHeader" id ="ulSim1"> 
                     <div class="header">  
                         <h2> Electrodialysis model </h2>
@@ -640,7 +566,7 @@
                             </div>
                             <div class="col" style="width: 77%;padding-top: -100px;">
                                 <div id="rotatedVideo" class="videoWrapper">
-                                    <video id="electroConv2" nocontrols loop autoplay>
+                                    <video id="electroConv2" controls loop autoplay>
                                         <source src="vids/electroConvProperScale2_cropped.webm" type="video/webm" style="width: 200px;">
                                     Your browser does not support the video tag.
                                     </video>
@@ -691,7 +617,7 @@
                         </div>
                         <div class="paddingWrapper">
                             <div class="rowx">
-                                <div class="col" style="width: 30%;margin-bottom: 420px;margin-right:80px;">
+                                <div class="col" style="width: 30%;margin-bottom: 670px;margin-right:80px;">
                                     <div class="dottedBox">
                                         <p><b>Some simplifications:</b></p>
                                         <ul>
@@ -700,13 +626,24 @@
                                         </ul>
                                     </div>    
                                 </div>
-                                <div class="col sideEq2" style="width: 53%;margin-top: -100px;">
+                                <div class="col sideEq2" style="width: 53%;margin-top: 250px;">
                                     <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial \mathbf {u} }{\partial t}}+(\mathbf {u} \cdot \nabla )\, \mathbf {u} -\nu \,\nabla ^{2}\mathbf{u} =f }$$</p>                                
                                     <p style="display: block;" class="eq small">$${ \displaystyle {\nabla \cdot \mathbf{u} = 0 }}$$</p>
                                     <p style="display: block;" class="eq small">$${ \displaystyle {\nabla^{2} \varphi =  0 }}$$</p>
                                     <p style="display: block;" class="eq small">$${ \displaystyle  {\mathbf{J}_{NaCl} = D \, \nabla c_{NaCl}-\mathbf{u}\, c_{NaCl}+{\frac {D\, z\, e}{k_{\mathrm {B} }\, T}}c_{NaCl}\, \nabla \varphi}}$$</p>
                                     <p style="display: block;" class="eq small">$${\displaystyle {\frac {\partial c_{NaCl}}{\partial t} = \nabla \cdot \mathbf{J}_{NaCl} }}$$</p>
                                     <!--<p style="display: block;" class="eq">$${ i = F ( \sum j_i)}$$</p> -->
+                                    <div class="fragment">
+                                        <h3><b>Boundary conditions</b></h3>
+                                        <ul>
+                                            <li>Concentration
+                                                <ul>
+                                                    <li>Neumann:</li>
+                                                    <p style="display: block;" class="eq small">$${\displaystyle  \left( \frac{\partial c_{NaCl}}{\partial x}\right) = - \frac{i}{F \, D}(T_1 - t_1) }$$</p>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -714,7 +651,8 @@
                             <p>Nog aanpassen zodat met fragmenten kan overgegaan worden van PNP naar LNP model</p>
                         </aside>
                 </section>
-
+                
+                <!--
                 <section class="normalHeader" id ="UvsI3"> 
                     <div class="header">  
                         <h2> Electrodialysis model </h2>
@@ -745,6 +683,7 @@
                      <aside class="notes">
                     </aside>
                 </section>
+                -->
 
                 <section class="normalHeader" id="summary"> 
                         <div class="header">  
@@ -881,6 +820,13 @@
                                 <li class="fragment">Not only for electrodialysis</li>
                             </ul>
                         </div>
+                </section>
+
+                <section class="normalHeader" id="RAPNP2"> 
+                        <div class="header">  
+                            <h2> Acknowledgement </h2>
+                        </div>
+                        <div class="paddingWrapper"></div>
                 </section>
 
                 <section class="cover"> 
