@@ -379,6 +379,44 @@
                         <aside class="notes"></aside>
                 </section>
 
+                <section class="normalHeader" id ="bc1"> 
+                    <div class="header">  
+                        <h2> Electrodialysis model </h2>
+                    </div>
+                    <div class="paddingWrapper">
+                        <h3><b>Boundary conditions</b></h3>
+                        <div class="rowx">
+                            <div class="col" style="width: 15%;margin-right:80px;">
+                                <div class="figures">
+                                        <img src="figs/compDomSliceInd.svg" style="width: 25%;position: absolute;top: 250px;left: 40px;" class="center">
+                                </div>
+                            </div>
+                            <div class="col" style="width: 80%;float: right" id="outerdiv">
+                                <ul style="margin-left:200px;">
+                                    <li> Velocity <span style="color: grey">(trivial)</span>: </li>
+                                    <li> Concentration
+                                        <ul>
+                                            <li>Dirichlet</li>
+                                            <li>Neumann <span style="color: grey">(zero flux)</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>Electric potential
+                                        <ul>
+                                            <li>Dirichlet <span style="color: grey">(Ohmic potential drop)</span></li>
+                                            <li>Dirichlet <span style="color: grey">(junction potentials)</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="confidentialFooter">Confidential</p>
+                     <aside class="notes">
+                        <p>The interesting thing about electrodialysis is that there are additional processes occuring when you increase the current</p>
+                        <p>Mass transfer limitation lead to additional convections</p>
+                    </aside>
+                </section>
+                
                 <section class="normalHeader" id ="ulSim1"> 
                     <div class="header">  
                         <h2> Electrodialysis model </h2>
